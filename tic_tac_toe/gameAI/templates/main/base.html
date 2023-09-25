@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Tic-Tac-Toe</title>
+    
+</head>
+    <body>
+      <h1 style="text-align: center; font-family: 'Courier New', Courier, monospace;">Tic-Tac-Toe</h1>
+      
+      <!-- The game board -->
+      <div id="game-board" style="display: flex; justify-content: center; align-items: center; height: 50vh;">
+        <form method="POST" action="{% url 'Game' %}">
+          {% csrf_token %}
+          <table>
+              <tr>
+                  <td><button class="cell" id="cell-0" name="cell_value" value="0" style="background-color: rgb(164, 164, 164); height: 100px; width: 100px;" {% if game_data.winner %}disabled{% endif %}> {{ game_data.cell_0 }} </button></td>
+                  <td><button class="cell" id="cell-1" name="cell_value" value="1" style="background-color: whitesmoke; height: 100px; width: 100px;" {% if game_data.winner %}disabled{% endif %}> {{ game_data.cell_1 }} </button></td>
+                  <td><button class="cell" id="cell-2" name="cell_value" value="2" style="background-color: whitesmoke; height: 100px; width: 100px;" {% if game_data.winner %}disabled{% endif %}> {{ game_data.cell_2 }} </button></td>
+              </tr>
+              <tr>
+                  <td><button class="cell" id="cell-3" name="cell_value" value="3" style="background-color: whitesmoke; height: 100px; width: 100px;" {% if game_data.winner %}disabled{% endif %}> {{ game_data.cell_3 }} </button></td>
+                  <td><button class="cell" id="cell-4" name="cell_value" value="4" style="background-color: whitesmoke; height: 100px; width: 100px;" {% if game_data.winner %}disabled{% endif %}> {{ game_data.cell_4 }} </button></td>
+                  <td><button class="cell" id="cell-5" name="cell_value" value="5" style="background-color: whitesmoke; height: 100px; width: 100px;" {% if game_data.winner %}disabled{% endif %}> {{ game_data.cell_5 }} </button></td>
+              </tr>
+              <tr>
+                  <td><button class="cell" id="cell-6" name="cell_value" value="6" style="background-color: whitesmoke; height: 100px; width: 100px;" {% if game_data.winner %}disabled{% endif %}> {{ game_data.cell_6 }} </button></td>
+                  <td><button class="cell" id="cell-7" name="cell_value" value="7" style="background-color: whitesmoke; height: 100px; width: 100px;" {% if game_data.winner %}disabled{% endif %}> {{ game_data.cell_7 }} </button></td>
+                  <td><button class="cell" id="cell-8" name="cell_value" value="8" style="background-color: whitesmoke; height: 100px; width: 100px;" {% if game_data.winner %}disabled{% endif %}> {{ game_data.cell_8 }} </button></td>
+              </tr>
+              
+          </table>
+          
+          
+      </div>
+      </form>
+      <!-- Display game status -->
+      <form method="POST" action="{% url 'index' %}">
+        {% csrf_token %}
+      <div id="game-status" style="text-align: center;">
+
+        <button id="restart-button" style="background-color: whitesmoke; height: 50px; width: 100px;">Restart</button>
+
+        {% if game_data.winner %}
+            {% if game_data.winner == 'X' %}
+                <h2 style="font-family: 'Courier New', Courier, monospace;">Winner: {{ game_data.winner }} </h2>
+            {% elif game_data.winner == 'O' %}
+                <h2 style="font-family: 'Courier New', Courier, monospace;">Winner: {{ game_data.winner }} </h2>
+            {% else %}
+                <h2 style="font-family: 'Courier New', Courier, monospace;"> {{ game_data.winner }} </h2>
+            {% endif %}
+        {% endif %}
+
+      </div>
+    </form>
+  </body>
+  </html>
+    

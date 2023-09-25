@@ -1,0 +1,12 @@
+<!-- tournament_detail.html -->
+
+<h1>{{ tournament.tournament_name }}</h1>
+<p>Start Date: {{ tournament.start_date }}</p>
+<p>End Date: {{ tournament.end_date }}</p>
+
+<h2>Games:</h2>
+<ul>
+    {% for game in games %}
+        <li>{{ game.game_name }} ({{ game.game_date }}): {{ game.winner }} vs. {{ game.loser }}</li>
+    {% endfor %}
+</ul>
